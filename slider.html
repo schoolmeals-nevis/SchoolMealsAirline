@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Slider Compenent</title>
+        <style>
+            body {
+                margin: 0px;
+            }
+
+            .slider {
+                height: 700px;
+                position: relative;
+            }
+
+            .slider img {
+                width:100%;
+                height: 700px;
+                position: absolute;
+            }
+
+            .slider .slider-prev-btn, .slider .slider-next-btn {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                background: transparent;
+                border: 0px;
+                color: #e95151;
+                font-size: 50px;
+                opacity: 0.3;
+            }
+
+            .slider .slider-prev-btn {
+                left: 0;
+            }
+
+            .slider .slider-next-btn {
+                right: 0;
+            }
+
+            /* Fading animation */
+            .fade {
+                -webkit-animation-name: fade;
+                -webkit-animation-duration: 1.5s;
+                animation-name: fade;
+                animation-duration: 1.5s;
+            }
+
+            @-webkit-keyframes fade {
+                from {opacity: .4}
+                to {opacity: 1}
+            }
+
+            @keyframes fade {
+                from {opacity: .4}
+                to {opacity: 1}
+            }
+        </style>
+    </head>
+    <body>
+        <div class="slider">
+            <img class="fade" src="images/14.JPG" />
+            <img class="fade" src="images/bonus 1.JPG" />
+            <img class="fade" src="images/bonus 2.JPG" />
+            <img class="fade" src="images/IMG_8302.JPG" />
+            <img class="fade" src="images/IMG_8499.JPG" />
+            <button class="slider-prev-btn" onclick="goPrevImage()"><</button>
+            <button class="slider-next-btn" onclick="goNextImage()">></button>
+        </div>
+    </body>
+    <script>
+        let items = document.querySelectorAll('div img');
+        let currentIndex = 0;
+        function scrollImage() {
+            for(let index=0; index < items.length ;index = index+1){
+                items[index].setAttribute('style', 'display: none')
+            }
+            items[currentIndex].setAttribute('style', 'display: block');
+        }
+
+        function goPrevImage() {
+            if(currentIndex == 0) {
+                currentIndex = items.length-1;
+            } else {
+                currentIndex = currentIndex-1;
+            }
+            scrollImage();
+        }
+
+        function goNextImage() {
+            if(currentIndex == items.length-1) {
+                currentIndex = 0;
+            } else {
+                currentIndex = currentIndex+1;
+            }
+            scrollImage();
+        }
+    </script>
+</html>
